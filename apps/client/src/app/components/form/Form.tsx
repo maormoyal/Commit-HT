@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
 import styles from './Form.module.scss';
+import axios from 'axios';
 import InputField from '../input/InputField';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import { useFormData } from '../../store/formDataSlice';
@@ -9,38 +10,39 @@ const initialValues: IFormData = {
   userName: '',
   phoneNumber: '',
   password: '',
-  confirmPassword: ''
+  confirmPassword: '',
 };
 
 const validators = {
   userName: (value: string) => {
-    if (!value) return "User name is required";
-    if (value.length > 32) return "User name must be up to 32 characters";
+    if (!value) return 'User name is required';
+    if (value.length > 32) return 'User name must be up to 32 characters';
     return undefined;
   },
   phoneNumber: (value: string) => {
-    if (!value) return "Phone number is required";
-    if (!/^\d{10}$/.test(value)) return "Phone number must be exactly 10 digits";
+    if (!value) return 'Phone number is required';
+    if (!/^\d{10}$/.test(value))
+      return 'Phone number must be exactly 10 digits';
     return undefined;
   },
   password: (value: string) => {
-    if (!value) return "Password is required";
-    if (value.length < 6 || value.length > 12) return "Password must be 6-12 characters";
-    if (!/[A-Z]/.test(value) || !/[!@#$&*]/.test(value)) return "Password must include an uppercase letter and a special character";
+    if (!value) return 'Password is required';
+    if (value.length < 6 || value.length > 12)
+      return 'Password must be 6-12 characters';
+    if (!/[A-Z]/.test(value) || !/[!@#$&*]/.test(value))
+      return 'Password must include an uppercase letter and a special character';
     return undefined;
   },
   confirmPassword: (value: string, formData?: IFormData) => {
     if (!formData) return undefined;
-    if (value !== formData.password) return "Passwords do not match";
+    if (value !== formData.password) return 'Passwords do not match';
     return undefined;
-  }
+  },
 };
 
-
 export function Form() {
-
   const { setFormDataSlice } = useFormData();
-  const [responseStatus, setResponseStatus] = useState('');
+  const [responseStatus, setResponseStatus] = useState({ status: '', msg: '' });
 
   const {
     formData,
@@ -56,34 +58,24 @@ export function Form() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isFormValid) {
-      console.log('Form Data Submitted:', formData);
       setFormDataSlice(formData);
-      setFormData(initialValues);
       saveFormData(formData);
+      setFormData(initialValues);
       setTouched({});
     }
   };
 
   const saveFormData = async (formData: IFormData) => {
     try {
-      const response = await fetch('http://your-api-endpoint.com/api/forms', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      await axios.post('http://localhost:3000/api/user', formData);
+      setResponseStatus({
+        status: 'success',
+        msg: 'Form data saved successfully!',
       });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      setResponseStatus('Form data saved successfully!');
-      setFormDataSlice(data);
+      // setFormDataSlice(response.data); // Update Redux state with the response data
     } catch (error) {
       console.error('Failed to save form data:', error);
-      setResponseStatus('Failed to save form data.');
+      setResponseStatus({ status: 'failed', msg: 'Failed to save form data.' });
     }
   };
 
@@ -133,8 +125,18 @@ export function Form() {
         touched={touched.confirmPassword}
         required={true}
       />
-      <button type="submit" disabled={!isFormValid} className={styles.submitBtn}>Submit</button>
-      {responseStatus && <p>{responseStatus}</p>}
+      <button
+        type="submit"
+        disabled={!isFormValid}
+        className={styles.submitBtn}
+      >
+        Submit
+      </button>
+      {responseStatus && (
+        <p className={`${styles[responseStatus.status]}`}>
+          {responseStatus.msg}
+        </p>
+      )}
     </form>
   );
 }
