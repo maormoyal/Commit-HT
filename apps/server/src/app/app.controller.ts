@@ -1,12 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
-import { CreateUserDto } from './dto/user.dto';
+import { Controller, Get } from '@nestjs/common';
 
 import { AppService } from './app.service';
 
@@ -18,9 +10,15 @@ export class AppController {
   getData() {
     return this.appService.getData();
   }
-  @Post('/user')
-  @UsePipes(new ValidationPipe({ whitelist: true }))
-  saveUserData(@Body() userData: CreateUserDto) {
-    return this.appService.saveUserData(userData);
+
+  @Get('/check-db')
+  async checkDbConnection() {
+    const status = await this.appService.checkDbConnection();
+    return { status };
   }
+  // @Post('/user')
+  // @UsePipes(new ValidationPipe({ whitelist: true }))
+  // saveUserData(@Body() userData: CreateUserDto) {
+  //   return this.appService.saveUserData(userData);
+  // }
 }

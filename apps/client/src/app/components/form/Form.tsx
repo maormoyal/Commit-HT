@@ -67,7 +67,7 @@ export function Form() {
 
   const saveFormData = async (formData: IFormData) => {
     try {
-      await axios.post('http://localhost:3000/api/user', formData);
+      await axios.post(`${import.meta.env.VITE_SERVER_URL}/user`, formData);
       setResponseStatus({
         status: 'success',
         msg: 'Form data saved successfully!',
