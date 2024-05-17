@@ -6,7 +6,8 @@
     "start:server": "nx serve server",
     "start:client": "nx serve client",
     "build:server": "nx build server --prod",
-    "build:client": "nx build client --prod"
+    "build:client": "nx build client --prod",
+    "log-client-path": "ts-node scripts/log-client-path.ts"
   },
   "private": true,
   "devDependencies": {

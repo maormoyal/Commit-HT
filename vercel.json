@@ -9,6 +9,11 @@
       "use": "@now/static"
     }
   ],
+  "build": {
+    "env": {
+      "BUILD_SCRIPT": "npm run log-client-path && npm run build"
+    }
+  },
   "routes": [
     {
       "src": "/(.*)",
