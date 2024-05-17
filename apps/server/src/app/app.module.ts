@@ -9,7 +9,16 @@ import { AppService } from './app.service';
 import { UserModule } from './modules/user/user.module';
 import { Connection } from 'mongoose';
 
-const rootPath = join(__dirname, '..', '..', '..', 'dist', 'apps', 'client');
+const rootPath = join(
+  __dirname,
+  '..',
+  '..',
+  '..',
+  '..',
+  'dist',
+  'apps',
+  'client'
+);
 console.log('Resolved Path:', rootPath);
 
 env.config();
@@ -19,7 +28,16 @@ env.config();
     MongooseModule.forRoot(process.env.DB_URI),
     UserModule,
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'client'),
+      rootPath: join(
+        __dirname,
+        '..',
+        '..',
+        '..',
+        '..',
+        'dist',
+        'apps',
+        'client'
+      ),
       exclude: ['/api*'],
     }),
   ],
