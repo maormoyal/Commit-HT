@@ -1,6 +1,8 @@
 import { FormEvent, useState } from 'react';
-import styles from './Form.module.scss';
 import axios from 'axios';
+
+import styles from './Form.module.scss';
+
 import InputField from '../input/InputField';
 import { useFormValidation } from '../../hooks/useFormValidation';
 import { useFormData } from '../../store/formDataSlice';

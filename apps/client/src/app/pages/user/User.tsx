@@ -8,8 +8,10 @@ export function User() {
   const { formDataSlice } = useFormData();
   const [userData, setUserData] = useState<TUserData | null>(null);
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
@@ -20,6 +22,8 @@ export function User() {
       } catch (error) {
         console.error('Failed to get user data:', error);
         setError('Failed to load user data');
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -28,15 +32,22 @@ export function User() {
 
   return (
     <div className={styles.userContainer}>
-      {error && <p className={styles.error}>{error}</p>}
-      <div className={styles.userField}>
-        <strong>User name:</strong>{' '}
-        {formDataSlice.userName || userData?.userName}
-      </div>
-      <div className={styles.userField}>
-        <strong>Phone Number:</strong>{' '}
-        {formDataSlice.phoneNumber || userData?.phoneNumber}
-      </div>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p className={styles.error}>{error}</p>
+      ) : (
+        <>
+          <div className={styles.userField}>
+            <strong>User name:</strong>{' '}
+            {formDataSlice.userName || userData?.userName}
+          </div>
+          <div className={styles.userField}>
+            <strong>Phone Number:</strong>{' '}
+            {formDataSlice.phoneNumber || userData?.phoneNumber}
+          </div>
+        </>
+      )}
     </div>
   );
 }
