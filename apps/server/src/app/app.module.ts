@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule, getConnectionToken } from '@nestjs/mongoose';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 import * as env from 'dotenv';
 
 import { AppController } from './app.controller';
@@ -10,7 +12,14 @@ import { Connection } from 'mongoose';
 env.config();
 
 @Module({
-  imports: [MongooseModule.forRoot(process.env.DB_URI), UserModule],
+  imports: [
+    MongooseModule.forRoot(process.env.DB_URI),
+    UserModule,
+    // ServeStaticModule.forRoot({
+    //   rootPath: join(__dirname, '..', 'client'),
+    //   exclude: ['/api*'],
+    // }),
+  ],
   controllers: [AppController],
   providers: [
     AppService,
