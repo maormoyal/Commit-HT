@@ -16,9 +16,4 @@ export class AppController {
     const status = await this.appService.checkDbConnection();
     return { status };
   }
-  // @Post('/user')
-  // @UsePipes(new ValidationPipe({ whitelist: true }))
-  // saveUserData(@Body() userData: CreateUserDto) {
-  //   return this.appService.saveUserData(userData);
-  // }
 }
