@@ -30,5 +30,3 @@ env.config();
   ],
 })
 export class AppModule {}
-
-//mongodb+srv://maorkab:FKTctaOCyvEYqooj@cluster-test.goxby2a.mongodb.net/commit-home-task
