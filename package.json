@@ -3,13 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start:server": "nx serve server",
-    "start:client": "nx serve client",
     "build": "nx run-many --target=build --all",
-    "start": "nx run-many --target=serve --all",
-    "dev:turbo": "turbo run dev",
-    "build:turbo": "turbo run build",
-    "start:turbo": "turbo run start"
+    "start": "nx run-many --target=serve --all"
   },
   "private": true,
   "devDependencies": {
