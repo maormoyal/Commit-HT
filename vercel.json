@@ -3,9 +3,6 @@
   "github": {
     "enabled": false
   },
-  "build": {
-    "command": "npm install && npm run build"
-  },
   "builds": [
     {
       "src": "/apps/server/src/main.ts",
