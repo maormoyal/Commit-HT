@@ -1,0 +1,9 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "nx serve client",
+    "build": "nx build client --configuration=production",
+    "start": "nx serve client --configuration=production"
+  }
+}

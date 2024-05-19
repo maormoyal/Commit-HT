@@ -4,7 +4,12 @@
   "license": "MIT",
   "scripts": {
     "start:server": "nx serve server",
-    "start:client": "nx serve client"
+    "start:client": "nx serve client",
+    "build": "nx run-many --target=build --all",
+    "start": "nx run-many --target=serve --all",
+    "dev:turbo": "turbo run dev",
+    "build:turbo": "turbo run build",
+    "start:turbo": "turbo run start"
   },
   "private": true,
   "devDependencies": {
@@ -76,6 +81,7 @@
     "react-router-dom": "6.11.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "turbo": "^1.13.3"
   }
 }

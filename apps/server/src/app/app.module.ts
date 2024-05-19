@@ -15,10 +15,10 @@ env.config();
   imports: [
     MongooseModule.forRoot(process.env.DB_URI),
     UserModule,
-    // ServeStaticModule.forRoot({
-    //   rootPath: join(__dirname, '..', 'client'),
-    //   exclude: ['/api*'],
-    // }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', '..', '..', 'apps', 'client', 'dist'),
+      exclude: ['/api*'],
+    }),
   ],
   controllers: [AppController],
   providers: [
