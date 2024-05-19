@@ -3,6 +3,9 @@
   "github": {
     "enabled": false
   },
+  "build": {
+    "command": "npm install && npm run build"
+  },
   "builds": [
     {
       "src": "/apps/server/src/main.ts",
@@ -19,5 +22,8 @@
       "dest": "/apps/server/src/main.ts",
       "methods": ["GET", "POST"]
     }
-  ]
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
 }
