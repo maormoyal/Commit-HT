@@ -22,8 +22,5 @@
       "dest": "/apps/server/src/main.ts",
       "methods": ["GET", "POST"]
     }
-  ],
-  "engines": {
-    "node": ">=14.0.0"
-  }
+  ]
 }
