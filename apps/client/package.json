@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "nx serve client",
-    "build": "tsc && vite build",
+    "build": "nx build client",
     "start": "nx serve client --configuration=production"
   },
   "devDependencies": {
