@@ -16,7 +16,7 @@ env.config();
     MongooseModule.forRoot(process.env.DB_URI),
     UserModule,
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', '..', '..', 'apps', 'client', 'dist'),
+      rootPath: join(__dirname, '..', '..', '..', 'client', 'dist'),
       exclude: ['/api*'],
     }),
   ],
