@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "nx serve server",
-    "build": "nx build server && ls dist || echo 'Client dist folder does not exist'"
+    "build": "nx build server --configuration=production",
+    "start": "nx serve server --configuration=production"
   },
   "devDependencies": {
     "@types/node": "~18.16.9"
