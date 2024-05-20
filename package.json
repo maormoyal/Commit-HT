@@ -7,6 +7,9 @@
     "start:all": "nx run-many --target=serve --all",
     "build": "npm run build:all && npm run start:all"
   },
+  "workspaces": [
+    "apps/*"
+  ],
   "private": true,
   "devDependencies": {
     "@nestjs/schematics": "^10.0.1",
