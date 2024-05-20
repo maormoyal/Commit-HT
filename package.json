@@ -4,10 +4,7 @@
   "license": "MIT",
   "scripts": {
     "build:all": "nx run-many --target=build --all",
-    "start:all": "nx run-many --target=start --all",
-    "build": "npm run build:all",
-    "start": "npm run start:all",
-    "check-dist": "ls dist || echo 'dist folder does not exist'"
+    "build": "npm run build:all"
   },
   "workspaces": [
     "apps/*"
